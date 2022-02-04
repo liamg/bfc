@@ -1,0 +1,28 @@
+builds:
+  - id: bfc
+    main: ./cmd/bfc
+    binary: bfc
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+archives:
+  - format: binary
+    name_template: "{{ .Binary}}"
+
+release:
+  prerelease: auto
+  github:
+    owner: liamg
+    name: bfc
+

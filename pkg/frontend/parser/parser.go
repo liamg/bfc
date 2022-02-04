@@ -23,7 +23,7 @@ func Parse(tokens []lexer.Token) ([]Statement, error) {
 		if token.Type == lexer.TokenComment {
 			continue
 		}
-		if token.Type == statement.Type {
+		if token.Type == statement.Type && isRepeatable(token.Type) {
 			statement.Count++
 			continue
 		}
@@ -55,4 +55,13 @@ func Parse(tokens []lexer.Token) ([]Statement, error) {
 	}
 
 	return statements, nil
+}
+
+func isRepeatable(tokenType lexer.TokenType) bool {
+	switch tokenType {
+	case lexer.TokenMoveLeft, lexer.TokenMoveRight, lexer.TokenIncrement, lexer.TokenDecrement:
+		return true
+	default:
+		return false
+	}
 }

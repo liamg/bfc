@@ -199,9 +199,13 @@ func (g *gen) compileStatement(stmt parser.Statement) error {
 			g.writeLine("call decm")
 		}
 	case lexer.TokenOutput:
-		g.writeLine("call out")
+		for i := 0; i < stmt.Count; i++ {
+			g.writeLine("call out")
+		}
 	case lexer.TokenInput:
-		g.writeLine("call in")
+		for i := 0; i < stmt.Count; i++ {
+			g.writeLine("call in")
+		}
 	case lexer.TokenJumpForward:
 		g.writeString(fmt.Sprintf("\nlstart%d:\n", stmt.Label))
 		g.writeLine("call readcell")

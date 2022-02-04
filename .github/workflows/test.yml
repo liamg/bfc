@@ -1,0 +1,22 @@
+name: release
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    name: releasing
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-go@v2
+      with:
+        go-version: '1.17'
+    - run: go version
+
+    - name: test
+      run: make test
