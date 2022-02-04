@@ -14,15 +14,16 @@ type TokenType rune
 */
 
 const (
-	TokenUnknown          TokenType = 0
-	TokenMoveRight        TokenType = '>'
-	TokenMoveLeft         TokenType = '<'
-	TokenMoveIncrement    TokenType = '+'
-	TokenMoveDecrement    TokenType = '-'
-	TokenMoveOutput       TokenType = '.'
-	TokenMoveInput        TokenType = ','
-	TokenMoveJumpForward  TokenType = '['
-	TokenMoveJumpBackward TokenType = ']'
+	TokenUnknown      TokenType = 0
+	TokenMoveRight    TokenType = '>'
+	TokenMoveLeft     TokenType = '<'
+	TokenIncrement    TokenType = '+'
+	TokenDecrement    TokenType = '-'
+	TokenOutput       TokenType = '.'
+	TokenInput        TokenType = ','
+	TokenJumpForward  TokenType = '['
+	TokenJumpBackward TokenType = ']'
+	TokenComment      TokenType = '/'
 )
 
 type Token struct {

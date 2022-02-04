@@ -17,10 +17,26 @@ func Lex(r io.Reader) ([]Token, error) {
 			}
 			return nil, err
 		}
-		tokens = append(tokens, Token{
-			ID:   id,
-			Type: TokenType(r),
-		})
+		switch TokenType(r) {
+		case TokenUnknown,
+			TokenMoveRight,
+			TokenMoveLeft,
+			TokenIncrement,
+			TokenDecrement,
+			TokenOutput,
+			TokenInput,
+			TokenJumpForward,
+			TokenJumpBackward:
+			tokens = append(tokens, Token{
+				ID:   id,
+				Type: TokenType(r),
+			})
+		default:
+			tokens = append(tokens, Token{
+				ID:   id,
+				Type: TokenComment,
+			})
+		}
 	}
 	return tokens, nil
 }
